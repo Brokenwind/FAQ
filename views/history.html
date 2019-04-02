@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>荟萃日志分析--历史日志</title>
+
+<link href="../resources/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../resources/bootstrap/css/datepicker3.css"
+	rel="stylesheet">
+<link href="../resources/bootstrap/css/bootstrap-table.css"
+	rel="stylesheet">
+<link href="../resources/bootstrap/css/styles.css"
+	rel="stylesheet">
+
+<!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<!--导航栏-->
+	<jsp:include page="common_navbar.html"></jsp:include>
+	<jsp:include page="common_sidebar.html"></jsp:include>
+
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<div class="row">
+			<ol class="breadcrumb">
+				<li><a href="#"><span class="glyphicon glyphicon-home"></span>
+				</a></li>
+				<li class="active">历史日志</li>
+			</ol>
+		</div>
+		<!--/.row-->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="page-header">历史日志</h1>
+
+			</div>
+		</div>
+		<!--/.row-->
+		<!-- 每月的访问量 -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" id="month-access-head">
+						<button
+							class="btn btn-primary btn-lg glyphicon glyphicon-calendar"
+							data-toggle="modal" data-target="#month-access-modal">某年每月的访问量</button>
+					</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper" id="line-month-chart-wrapper">
+							<canvas class="main-chart" id="line-month-chart" height="200"
+								width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.row-->
+
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="month-access-modal" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- &times;表示x号 -->
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">请选择年份</h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel panel-red">
+							<div class="panel-heading dark-overlay">
+								<span class="glyphicon glyphicon-calendar"></span>Calendar
+							</div>
+							<div class="panel-body ">
+								<!-- 这里为了居中显示日历-->
+								<div class=" col-md-3"></div>
+								<div class="col-md-6 " id="month-access-calendar"></div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary" id="month-access-select-button" data-dismiss="modal">提交选择</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		<!-- 每天的访问量 -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading" id="day-access-head">
+						<button
+							class="btn btn-primary btn-lg glyphicon glyphicon-calendar"
+							data-toggle="modal" data-target="#day-access-modal">某年某月每天的访问量</button>
+					</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper" id="line-day-chart-wrapper">
+							<canvas class="main-chart" id="line-day-chart" height="200"
+								width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.row-->
+		<!-- 模态框（Modal） -->
+		<div class="modal fade" id="day-access-modal" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<!-- &times;表示x号 -->
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel">请选择年月</h4>
+					</div>
+					<div class="modal-body">
+						<div class="panel panel-red">
+							<div class="panel-heading dark-overlay">
+								<span class="glyphicon glyphicon-calendar"></span>Calendar
+							</div>
+							<div class="panel-body ">
+								<!-- 这里为了居中显示日历-->
+								<div class=" col-md-3"></div>
+								<div class="col-md-6 " id="day-access-calendar"></div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary" id="day-access-select-button" data-dismiss="modal">提交选择</button>
+					</div>
+				</div>
+				<!-- /.modal-content -->
+			</div>
+			<!-- /.modal -->
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">历史浏览器使用情况</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper" id="browser-count-bar-wrapper">
+							<canvas class="main-chart" id="browser-count-bar" height="200"
+								width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.row-->
+		<!-- 操作系统比较 -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">各种操作系统比较</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper" id="os-count-bar-wrapper">
+							<canvas class="main-chart" id="os-count-bar" height="200"
+								width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.row-->
+
+
+		<div class="row">
+			<!-- 浏览器引擎统计 -->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">浏览器引擎统计</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper" id="engine-count-pie-wrapper">
+							<canvas class="chart" id="engine-count-pie"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Platform统计 -->
+			<div class="col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">平台信息统计</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper" id="platform-count-pie-wrapper">
+							<canvas class="chart" id="platform-count-pie"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.row-->
+		<!-- 不同地区浏览器使用 -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">不同地区的流量信息</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper" id="location-access-count-bar-wrapper">
+							<canvas class="main-chart" id="location-access-count-bar"
+								height="400" width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 不同的uri访问量统计 -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">uri访问量统计</div>
+					<div class="panel-body">
+						<div class="canvas-wrapper" id="uri-access-count-bar-wrapper">
+							<canvas class="main-chart" id="uri-access-count-bar" height="200"
+								width="600"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Label:</h4>
+						<div class="easypiechart" id="easypiechart-blue" data-percent="92">
+							<span class="percent">92%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Label:</h4>
+						<div class="easypiechart" id="easypiechart-orange"
+							data-percent="65">
+							<span class="percent">65%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Label:</h4>
+						<div class="easypiechart" id="easypiechart-teal" data-percent="56">
+							<span class="percent">56%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-md-3">
+				<div class="panel panel-default">
+					<div class="panel-body easypiechart-panel">
+						<h4>Label:</h4>
+						<div class="easypiechart" id="easypiechart-red" data-percent="27">
+							<span class="percent">27%</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/.row-->
+	</div>
+	<!--/.main-->
+
+	<script src="../resources/js/jquery-1.11.1.min.js"></script>
+	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../resources/chart/chart.min.js"></script>
+	<script
+		src="../resources/chart/history-day-access-line-char.js"></script>
+	<script
+		src="../resources/chart/history-month-access-line-chart.js"></script>
+	<script
+		src="../resources/chart/history-browser-bar-chart.js"></script>
+	<script src="../resources/chart/history-os-bar-chart.js"></script>
+	<script
+		src="../resources/chart/history-platform-pie-chart.js"></script>
+	<script
+		src="../resources/chart/history-engine-pie-chart.js"></script>
+	<script
+		src="../resources/chart/history-location-access-bar-chart.js"></script>
+	<script
+		src="../resources/chart/history-uri-access-bar-chart.js"></script>
+	<script src="../resources/chart/easypiechart.js"></script>
+	<script src="../resources/chart/easypiechart-data.js"></script>
+	<script
+		src="../resources/bootstrap/js/bootstrap-datepicker.js"></script>
+	<script src="../resources/bootstrap/js/bootstrap-table.js"></script>
+	<script>
+		$(window).on('resize', function() {
+			if ($(window).width() > 768)
+				$('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function() {
+			if ($(window).width() <= 767)
+				$('#sidebar-collapse').collapse('hide')
+		})
+		$("#month-access-calendar").datepicker({
+			startView: 2, 
+			maxViewMode: 2,
+			minViewMode:2,
+			format: "yyyy"
+		});
+		
+		$("#month-access-select-button").click(function(){
+			var year = $("#month-access-calendar").datepicker("getFormattedDate");
+			queryMonthAccess(year);
+		});
+		
+		$("#day-access-calendar").datepicker({
+			startView: 2, 
+			maxViewMode: 1,
+			minViewMode:1,
+			format: "yyyy-mm",//选择日期后，文本框显示的日期格式
+			language: "zh-CN" //汉化 
+		});
+		
+		$("#day-access-select-button").click(function(){
+			var year_month = $("#day-access-calendar").datepicker("getFormattedDate").split("-");
+		//	alert("hello:"+year_month[0]+year_month[1]);
+			queryDayAccess(year_month[0],year_month[1]);
+		});
+		
+		window.onload = function() {
+			queryDayAccess(2014,3);
+			queryMonthAccess(2014);
+			queryBrowsers();
+			//获取操作系统信息
+			queryOss();
+			//获取平台信息
+			queryPlatforms();
+			//获取浏览器引擎信息
+			queryEngines();
+			queryLocationAccess();
+			queryUriAccess();
+			$("#history_li").addClass('active');
+		}
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>荟萃日志分析--综合分析</title>
+
+<link href="../resources/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="../resources/bootstrap/css/datepicker3.css"
+	rel="stylesheet">
+<link href="../resources/bootstrap/css/bootstrap-table.css"
+	rel="stylesheet">
+<link href="../resources/bootstrap/css/styles.css"
+	rel="stylesheet">
+
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+	<jsp:include page="common_navbar.html"></jsp:include>
+	<jsp:include page="common_sidebar.html"></jsp:include>
+	<jsp:include page="integrated_ip_useragent.jsp"></jsp:include>
+	<jsp:include page="integrated_location_useragent.jsp"></jsp:include>
+
+	<script src="../resources/js/jquery-1.11.1.min.js"></script>
+	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="../resources/bootstrap/js/bootstrap-datepicker.js"></script>
+	<script src="../resources/bootstrap/js/bootstrap-table.js"></script>
+	<script
+		src="../resources/tables/history-ip-browser-table.js"></script>
+	<script src="../resources/tables/history-ip-os-table.js"></script>
+	<script
+		src="../resources/tables/history-ip-platform-table.js"></script>
+
+	<script
+		src="../resources/tables/history-location-browser-table.js"></script>
+	<script
+		src="../resources/tables/history-location-os-table.js"></script>
+	<script
+		src="../resources/tables/history-location-platform-table.js"></script>
+
+	<script>
+		$(window).on('resize', function() {
+			if ($(window).width() > 768)
+				$('#sidebar-collapse').collapse('show')
+		})
+		$(window).on('resize', function() {
+			if ($(window).width() <= 767)
+				$('#sidebar-collapse').collapse('hide')
+		})
+		$("#customeried_select_li").addClass('active');
+		$("#integrated_ip_useragent_select_li").click(function() {
+			$("#ip_useragent").show();
+			$("#location_useragent").hide();
+		});
+
+		$("#integrated_location_useragent_select_li").click(function() {
+			$("#location_useragent").show();
+			$("#ip_useragent").hide();
+		});
+	</script>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			queryIpBrowser();
+			queryIpOS();
+			queryIpPlatform();
+			queryLocationBrowser();
+			queryLocationOS();
+			queryLocationPlatform();
+		});
+	</script>
+</body>
+</html>
