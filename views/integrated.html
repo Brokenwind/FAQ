@@ -22,112 +22,10 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#"><span>中国石油大学（华东）</span>荟萃影视日志</a>
-            <ul class="user-menu">
-                <li class="dropdown pull-right">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                            class="glyphicon glyphicon-user"></span> 用户 <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> 个人详情</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> 设置</a></li>
-                        <li><a href="../views/login.jsp"><span class="glyphicon glyphicon-log-out"></span>
-                            退出</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div><!-- /.container-fluid -->
 
-</nav>
-
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
-    <ul class="nav menu">
-        <!--占位-->
-        <li role="presentation" class="divider"></li>
-        <li id="current_li"><a href="../views/current.jsp"><span
-                class="glyphicon glyphicon-dashboard"></span> 今日情况</a>
-        </li>
-        <!--占位-->
-        <li role="presentation" class="divider"></li>
-        <li id="history_li"><a href="../views/history.jsp"><span
-                class="glyphicon glyphicon-stats"></span> 历史日志</a>
-        </li>
-        <!--占位-->
-        <li role="presentation" class="divider"></li>
-        <!-- 下拉 -->
-        <li class="parent " id="customeried_select_li"><a
-                href="../views/integrated.html"> <span
-                class="glyphicon glyphicon-list"></span> 整合分析 <span
-                data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em
-                class="glyphicon glyphicon-s glyphicon-plus"></em> </span> </a>
-            <ul class="children collapse" id="sub-item-1">
-                <li id="integrated_ip_useragent_select_li"><a class="" href="#ip_useragent"> <span
-                        class="glyphicon glyphicon-share-alt"></span> IP地址综合分析 </a></li>
-                <li id="integrated_location_useragent_select_li"><a class="" href="#location_useragent"> <span
-                        class="glyphicon glyphicon-share-alt"></span> 地理位置综合分析 </a></li>
-                <li id="integrated_other_useragent_select_li"><a class="" href="#location_useragent"> <span
-                        class="glyphicon glyphicon-share-alt"></span> 其它分析 </a></li>
-            </ul>
-        </li>
-        <!--占位-->
-        <li role="presentation" class="divider"></li>
-        <li id="cluster_status_li"><a
-                href="../views/cluster_status.jsp"><span
-                class="glyphicon glyphicon-list-alt"></span> 集群状态</a></li>
-    </ul>
-</div>
-<!--/.sidebar-->
-
-<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main"
-     id="location_useragent">
-    <div class="row">
-        <ol class="breadcrumb">
-            <li><a href="#"><span class="glyphicon glyphicon-home"></span>
-            </a></li>
-            <li class="active">地理位置综合分析</li>
-        </ol>
-    </div>
-    <!--/.row-->
-
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">地理位置综合分析</h1>
-        </div>
-    </div>
-    <!--/.row-->
-
-    <!-- 不同的地理位置浏览器使用情况 -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="alert bg-success" role="alert">
-                        <span class="glyphicon glyphicon-check"></span> 不同的地理位置浏览器使用情况
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <table id="history_location_browser" data-show-refresh="true"
-                           data-show-toggle="true" data-show-columns="true"
-                           data-search="true" data-pagination="true" data-sort-name="count"
-                           data-sort-order="desc">
-                        <thead>
-                        <tr>
-                            <!-- data-checkbox 表示在此字段前可以有选择框 -->
-                            <th data-field="area" data-sortable="true">访问地区名</th>
-                            <th data-field="browser" data-sortable="true">浏览器</th>
-                            <th data-field="count" data-sortable="true">使用量</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--/.main-->
+<div id="common_navbar_page"></div>
+<div id="common_sidebar_page"></div>
+<div id="integrated_location_page"></div>
 
 <script src="../resources/js/jquery-1.11.1.min.js"></script>
 <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
@@ -142,26 +40,24 @@
     $(window).on('resize', function () {
         if ($(window).width() > 768)
             $('#sidebar-collapse').collapse('show')
-    })
-    $(window).on('resize', function () {
         if ($(window).width() <= 767)
             $('#sidebar-collapse').collapse('hide')
     })
-    $("#customeried_select_li").addClass('active');
-    $("#integrated_ip_useragent_select_li").click(function () {
-        $("#ip_useragent").show();
-        $("#location_useragent").hide();
-    });
-
-    $("#integrated_location_useragent_select_li").click(function () {
-        $("#location_useragent").show();
-        $("#ip_useragent").hide();
-    });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        processLocationBrowser();
+<script>
+    $(function () {
+        // 加载导航栏
+        $("#common_navbar_page").load("common_navbar.html");
+        // 加载侧边栏
+        $("#common_sidebar_page").load("common_sidebar.html", function () {
+            // 加载完了之后使当前项选中
+            $("#customeried_select_li").addClass('active');
+        });
+        // 加载表格部分
+        $("#integrated_location_page").load("integrated_location_useragent.html", function () {
+            processLocationBrowser()
+        });
     });
 </script>
 </body>
