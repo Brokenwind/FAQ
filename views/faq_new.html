@@ -35,11 +35,11 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="alert bg-primary" role="alert">
-                        <span class="glyphicon glyphicon-check"></span> 已确认答案的问题
+                        <span class="glyphicon glyphicon-check"></span> 未确认答案的问题
                     </div>
                 </div>
                 <div class="panel-body">
-                    <table id="table_faq_usual" data-show-refresh="true"
+                    <table id="table_faq_new" data-show-refresh="true"
                            data-show-toggle="true" data-show-columns="true"
                            data-search="true" data-pagination="true"
                            data-sort-order="desc">
@@ -57,7 +57,7 @@
 <script src="../resources/bootstrap/js/bootstrap-table.js"></script>
 
 <script
-        src="../resources/tables/load_faq_usual.js"></script>
+        src="../resources/tables/load_faq_new.js"></script>
 
 <script>
     $(window).on('resize', function () {
@@ -75,9 +75,9 @@
         // 加载侧边栏
         $("#common_sidebar_page").load("common_sidebar.html", function () {
             // 加载完了之后使当前项选中
-            $("#sidebar_select_li_usual").addClass('active');
+            $("#sidebar_select_li_new").addClass('active');
         });
-        load_faq_usual_data()
+        load_faq_new_data()
     });
 </script>
 </body>

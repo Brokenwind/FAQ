@@ -1,10 +1,10 @@
 /**将从ajax获取的数据直接传递到Table中进行显示*/
-function processLocationBrowser() {
-    $("#history_location_browser").bootstrapTable({
-        url: '../resources/data/history_location_browser.json',
+function load_faq_usual_data() {
+    $("#table_faq_usual").bootstrapTable({
+        url: '../resources/data/data_faq_usual.json',
         method: 'GET',                      //请求方式（*）
         pagination: true,                   //是否显示分页（*）
-        pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+        pageList: [5, 10, 25, 50, 100],     //可供选择的每页的行数（*）
         search: true,                       //是否显示表格搜索
         clickToSelect: true,                //是否启用点击选中行
         cardView: false,                    //是否显示详细视图
