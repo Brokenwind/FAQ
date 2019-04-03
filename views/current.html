@@ -1,4 +1,3 @@
-<%@ page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,9 +22,8 @@
 </head>
 
 <body>
-	<jsp:include page="common_navbar.jsp"></jsp:include>
-	<jsp:include page="common_sidebar.jsp"></jsp:include>
-
+        <div id="common_navbar_page"></div>
+	<div id="common_sidebar_page"></div>
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">
 			<!--面包屑导航-->
@@ -240,21 +238,32 @@
 		$(window).on('resize', function() {
 			if ($(window).width() > 768)
 				$('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function() {
 			if ($(window).width() <= 767)
 				$('#sidebar-collapse').collapse('hide')
+
 		})
-		window.onload = function() {
-			//获取当前访问量
-			queryCurrentAccess();
-			//获取当前用户浏览器使用情况
-			queryBrowsers();
-			//获取操作系统信息
-			queryOss();
-			$("#current_li").addClass('active');
-		}
 	</script>
+<script>
+    $(function () {
+        // 加载导航栏
+        $("#common_navbar_page").load("common_navbar.html");
+        // 加载侧边栏
+        $("#common_sidebar_page").load("common_sidebar.html", function () {
+            // 加载完了之后使当前项选中
+            $("#current_li").addClass('active');
+        });
+        // 加载数据部分
+        $("#integrated_location_page").load("integrated_location_useragent.html", function () {
+            //获取当前访问量
+            queryCurrentAccess();
+            //获取当前用户浏览器使用情况
+            queryBrowsers();
+            //获取操作系统信息
+            queryOss();
+        });
+    });
+</script>
+
 </body>
 
 </html>
