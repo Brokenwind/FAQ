@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html; charset=utf-8"%>
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -10,7 +10,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="#"><span class="glyphicon glyphicon-user"></span> 个人详情</a></li>
                         <li><a href="#"><span class="glyphicon glyphicon-cog"></span> 设置</a></li>
-                        <li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span>
+                        <li><a href="../views/login.jsp"><span class="glyphicon glyphicon-log-out"></span>
                             退出</a></li>
                     </ul>
                 </li>

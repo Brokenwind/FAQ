@@ -1,81 +1,168 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>荟萃日志分析--综合分析</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>荟萃日志分析--综合分析</title>
 
-<link href="../resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="../resources/bootstrap/css/datepicker3.css"
-	rel="stylesheet">
-<link href="../resources/bootstrap/css/bootstrap-table.css"
-	rel="stylesheet">
-<link href="../resources/bootstrap/css/styles.css"
-	rel="stylesheet">
+    <link href="../resources/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link href="../resources/bootstrap/css/datepicker3.css"
+          rel="stylesheet">
+    <link href="../resources/bootstrap/css/bootstrap-table.css"
+          rel="stylesheet">
+    <link href="../resources/bootstrap/css/styles.css"
+          rel="stylesheet">
 
-<!--[if lt IE 9]>
-<script src="js/html5shiv.js"></script>
-<script src="js/respond.min.js"></script>
-<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
 <body>
-	<jsp:include page="common_navbar.html"></jsp:include>
-	<jsp:include page="common_sidebar.html"></jsp:include>
-	<jsp:include page="integrated_ip_useragent.jsp"></jsp:include>
-	<jsp:include page="integrated_location_useragent.jsp"></jsp:include>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><span>中国石油大学（华东）</span>荟萃影视日志</a>
+            <ul class="user-menu">
+                <li class="dropdown pull-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
+                            class="glyphicon glyphicon-user"></span> 用户 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> 个人详情</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-cog"></span> 设置</a></li>
+                        <li><a href="../views/login.jsp"><span class="glyphicon glyphicon-log-out"></span>
+                            退出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.container-fluid -->
 
-	<script src="../resources/js/jquery-1.11.1.min.js"></script>
-	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
-	<script
-		src="../resources/bootstrap/js/bootstrap-datepicker.js"></script>
-	<script src="../resources/bootstrap/js/bootstrap-table.js"></script>
-	<script
-		src="../resources/tables/history-ip-browser-table.js"></script>
-	<script src="../resources/tables/history-ip-os-table.js"></script>
-	<script
-		src="../resources/tables/history-ip-platform-table.js"></script>
+</nav>
 
-	<script
-		src="../resources/tables/history-location-browser-table.js"></script>
-	<script
-		src="../resources/tables/history-location-os-table.js"></script>
-	<script
-		src="../resources/tables/history-location-platform-table.js"></script>
+<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+    <ul class="nav menu">
+        <!--占位-->
+        <li role="presentation" class="divider"></li>
+        <li id="current_li"><a href="../views/current.jsp"><span
+                class="glyphicon glyphicon-dashboard"></span> 今日情况</a>
+        </li>
+        <!--占位-->
+        <li role="presentation" class="divider"></li>
+        <li id="history_li"><a href="../views/history.jsp"><span
+                class="glyphicon glyphicon-stats"></span> 历史日志</a>
+        </li>
+        <!--占位-->
+        <li role="presentation" class="divider"></li>
+        <!-- 下拉 -->
+        <li class="parent " id="customeried_select_li"><a
+                href="../views/integrated.html"> <span
+                class="glyphicon glyphicon-list"></span> 整合分析 <span
+                data-toggle="collapse" href="#sub-item-1" class="icon pull-right"><em
+                class="glyphicon glyphicon-s glyphicon-plus"></em> </span> </a>
+            <ul class="children collapse" id="sub-item-1">
+                <li id="integrated_ip_useragent_select_li"><a class="" href="#ip_useragent"> <span
+                        class="glyphicon glyphicon-share-alt"></span> IP地址综合分析 </a></li>
+                <li id="integrated_location_useragent_select_li"><a class="" href="#location_useragent"> <span
+                        class="glyphicon glyphicon-share-alt"></span> 地理位置综合分析 </a></li>
+                <li id="integrated_other_useragent_select_li"><a class="" href="#location_useragent"> <span
+                        class="glyphicon glyphicon-share-alt"></span> 其它分析 </a></li>
+            </ul>
+        </li>
+        <!--占位-->
+        <li role="presentation" class="divider"></li>
+        <li id="cluster_status_li"><a
+                href="../views/cluster_status.jsp"><span
+                class="glyphicon glyphicon-list-alt"></span> 集群状态</a></li>
+    </ul>
+</div>
+<!--/.sidebar-->
 
-	<script>
-		$(window).on('resize', function() {
-			if ($(window).width() > 768)
-				$('#sidebar-collapse').collapse('show')
-		})
-		$(window).on('resize', function() {
-			if ($(window).width() <= 767)
-				$('#sidebar-collapse').collapse('hide')
-		})
-		$("#customeried_select_li").addClass('active');
-		$("#integrated_ip_useragent_select_li").click(function() {
-			$("#ip_useragent").show();
-			$("#location_useragent").hide();
-		});
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main"
+     id="location_useragent">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="#"><span class="glyphicon glyphicon-home"></span>
+            </a></li>
+            <li class="active">地理位置综合分析</li>
+        </ol>
+    </div>
+    <!--/.row-->
 
-		$("#integrated_location_useragent_select_li").click(function() {
-			$("#location_useragent").show();
-			$("#ip_useragent").hide();
-		});
-	</script>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">地理位置综合分析</h1>
+        </div>
+    </div>
+    <!--/.row-->
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			queryIpBrowser();
-			queryIpOS();
-			queryIpPlatform();
-			queryLocationBrowser();
-			queryLocationOS();
-			queryLocationPlatform();
-		});
-	</script>
+    <!-- 不同的地理位置浏览器使用情况 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="alert bg-success" role="alert">
+                        <span class="glyphicon glyphicon-check"></span> 不同的地理位置浏览器使用情况
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table id="history_location_browser" data-show-refresh="true"
+                           data-show-toggle="true" data-show-columns="true"
+                           data-search="true" data-pagination="true" data-sort-name="count"
+                           data-sort-order="desc">
+                        <thead>
+                        <tr>
+                            <!-- data-checkbox 表示在此字段前可以有选择框 -->
+                            <th data-field="area" data-sortable="true">访问地区名</th>
+                            <th data-field="browser" data-sortable="true">浏览器</th>
+                            <th data-field="count" data-sortable="true">使用量</th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/.main-->
+
+<script src="../resources/js/jquery-1.11.1.min.js"></script>
+<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
+<script
+        src="../resources/bootstrap/js/bootstrap-datepicker.js"></script>
+<script src="../resources/bootstrap/js/bootstrap-table.js"></script>
+
+<script
+        src="../resources/tables/history-location-browser-table.js"></script>
+
+<script>
+    $(window).on('resize', function () {
+        if ($(window).width() > 768)
+            $('#sidebar-collapse').collapse('show')
+    })
+    $(window).on('resize', function () {
+        if ($(window).width() <= 767)
+            $('#sidebar-collapse').collapse('hide')
+    })
+    $("#customeried_select_li").addClass('active');
+    $("#integrated_ip_useragent_select_li").click(function () {
+        $("#ip_useragent").show();
+        $("#location_useragent").hide();
+    });
+
+    $("#integrated_location_useragent_select_li").click(function () {
+        $("#location_useragent").show();
+        $("#ip_useragent").hide();
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        processLocationBrowser();
+    });
+</script>
 </body>
 </html>

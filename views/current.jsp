@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +23,8 @@
 </head>
 
 <body>
-	<jsp:include page="common_navbar.html"></jsp:include>
-	<jsp:include page="common_sidebar.html"></jsp:include>
+	<jsp:include page="common_navbar.jsp"></jsp:include>
+	<jsp:include page="common_sidebar.jsp"></jsp:include>
 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 		<div class="row">

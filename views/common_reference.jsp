@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html; charset=utf-8"%>
 <!-- script -->
 <!-- stylesheet 文件 -->
 <link href="../resources/bootstrap/css/bootstrap.min.css"

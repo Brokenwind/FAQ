@@ -1,7 +1,6 @@
 function queryLocationBrowser() {
     $.ajax({
-        url: "/MovielogServer/history/get_location_browsers",
-        data: {"num": 50},
+        url: '../resources/data/get_location_browsers.json',
         datatype: "json",//请求页面返回的数据类型
         type: "GET",
         contentType: "application/json",//注意请求页面的contentType 要于此处保持一致
@@ -11,9 +10,10 @@ function queryLocationBrowser() {
         }
     });
 }
+
 /**将从ajax获取的数据直接传递到Table中进行显示*/
 function processLocationBrowser(json_data) {
     $("#history_location_browser").bootstrapTable({
-        data: json_data
+        url: './get_location_browsers.json'
     });
 }

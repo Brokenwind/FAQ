@@ -1,14 +1,14 @@
-
+<%@ page contentType="text/html; charset=utf-8"%>
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 	<ul class="nav menu">
 		<!--占位-->
 		<li role="presentation" class="divider"></li>
-		<li id="current_li"><a href="current.html"><span
+		<li id="current_li"><a href="../views/current.jsp"><span
 				class="glyphicon glyphicon-dashboard"></span> 今日情况</a>
 		</li>
 		<!--占位-->
 		<li role="presentation" class="divider"></li>
-		<li id="history_li"><a href="history.html"><span
+		<li id="history_li"><a href="../views/history.jsp"><span
 				class="glyphicon glyphicon-stats"></span> 历史日志</a>
 		</li>
 		<!--占位-->
@@ -31,7 +31,7 @@
 		<!--占位-->
 		<li role="presentation" class="divider"></li>
 		<li id="cluster_status_li"><a
-			href="cluster_status.html"><span
+			href="../views/cluster_status.jsp"><span
 				class="glyphicon glyphicon-list-alt"></span> 集群状态</a></li>
 	</ul>
 </div>

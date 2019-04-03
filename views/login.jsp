@@ -1,4 +1,4 @@
-
+<%@ page contentType="text/html; charset=utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +26,7 @@
 			<div class="login-panel panel panel-default">
 				<div class="panel-heading">Log in</div>
 				<div class="panel-body">
-					<form role="form" action="../user/signin" method="post">
+					<form role="form" action="/MovielogServer/user/signin" method="post">
 						<fieldset>
 							<div class="form-group">
 								<input class="form-control" placeholder="用户名" name="name" type="text" autofocus="">
