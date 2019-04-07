@@ -77,3 +77,7 @@ function actionFormatter(value, row, index) {
 
     return result;
 }
+
+function EditViewById(row){
+    $("#modal_faq_detail").modal();
+}

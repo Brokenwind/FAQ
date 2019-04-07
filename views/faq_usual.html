@@ -52,6 +52,62 @@
 </div>
 <!--/.main-->
 
+<div class="modal fade" id="modal_faq_detail" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- &times;表示x号 -->
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;
+                </button>
+                <div class="panel-heading bg-primary">
+                    <span class="glyphicon glyphicon-dashboard"></span>问题详情
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <div class="panel-body ">
+                        <form class="form-horizontal" role="form" action="/MovielogServer/user/signin" method="post">
+                            <fieldset>
+                                <div class="control-group">
+
+                                    <!-- Text input-->
+                                    <label class="control-label" for="input01">问题</label>
+                                    <div class="controls">
+                                        <input placeholder="placeholder" class="input-xlarge" type="text">
+                                        <p class="help-block"></p>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+
+                                    <!-- Text input-->
+                                    <label class="control-label" for="input01">答案</label>
+                                    <div class="controls">
+                                        <input placeholder="placeholder" class="input-xlarge" type="text">
+                                        <p class="help-block"></p>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary" id="month-access-select-button" data-dismiss="modal">
+                    提交选择
+                </button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+
 <script src="../resources/js/jquery-1.11.1.min.js"></script>
 <script src="../resources/bootstrap/js/bootstrap.min.js"></script>
 <script src="../resources/bootstrap/js/bootstrap-table.js"></script>
